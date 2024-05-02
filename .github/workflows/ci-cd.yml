@@ -1,0 +1,41 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npm test
+
+      - name: Install SSH Action
+        uses: webfactory/ssh-agent@v0.5.3
+
+      - name: Deploy to AWS EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }} # EC2 instance public IP
+          username: ${{ secrets.EC2_USERNAME }} # EC2 instance username
+          key: ${{ secrets.SSH_PRIVATE_KEY }} # Your SSH private key
+          script: |
+            cd /ubuntu/home/newbackREST # Navigate to your application directory
+            git pull origin main # Pull latest changes from your repository
+            npm install # Install dependencies
+            pm2 restart app # Restart your Node.js application using PM2
+
