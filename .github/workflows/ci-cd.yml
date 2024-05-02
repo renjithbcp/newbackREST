@@ -20,6 +20,9 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+        
+      - name: Check SSH Private Key
+        run: echo "${{ secrets.SSH_PRIVATE_KEY }}"
 
       - name: Install SSH Action
         uses: webfactory/ssh-agent@v0.5.3
