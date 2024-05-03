@@ -33,7 +33,7 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }} # EC2 instance username
           key: ${{ secrets.SSH_PRIVATE_KEY }} # Your SSH private key
           script: |
-            cd /ubuntu/home/ubuntu/newbackREST # Navigate to your application directory
+            cd /home/ubuntu/newbackREST # Navigate to your application directory
             git pull origin main # Pull latest changes from your repository
             npm install # Install dependencies
             pm2 restart app # Restart your Node.js application using PM2
