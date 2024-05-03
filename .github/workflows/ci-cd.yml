@@ -21,6 +21,9 @@ jobs:
       - name: Install Dependencies
         run: npm install
         
+      - name: Install PM2
+        run: npm install -g pm2
+
       - name: Start PM2 Process
         run: pm2 start server.js 
 
@@ -40,4 +43,3 @@ jobs:
             git pull origin main # Pull latest changes from your repository
             npm install # Install dependencies
             pm2 restart server.js # Restart your Node.js application using PM2
-
