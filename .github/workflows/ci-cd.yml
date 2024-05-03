@@ -20,12 +20,11 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-        
-      - name: Check SSH Private Key
-        run: echo "${{ secrets.SSH_PRIVATE_KEY }}"
 
       - name: Install SSH Action
         uses: webfactory/ssh-agent@v0.5.3
+        with:
+         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy to AWS EC2
         uses: appleboy/ssh-action@master
