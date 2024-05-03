@@ -22,7 +22,7 @@ jobs:
         run: npm install
         
       - name: Start PM2 Process
-        run: pm2 start server.js --name="server~"
+        run: pm2 start server.js 
 
       - name: Install SSH Action
         uses: webfactory/ssh-agent@v0.5.3
