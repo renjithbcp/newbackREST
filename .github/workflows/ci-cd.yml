@@ -42,4 +42,4 @@ jobs:
             cd /home/ubuntu/newbackREST # Navigate to your application directory
             git pull origin main # Pull latest changes from your repository
             npm install # Install dependencies
-            pm2 restart server.js # Restart your Node.js application using PM2
+            pm2 restart server # Restart your Node.js application using PM2
